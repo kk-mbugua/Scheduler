@@ -10,7 +10,6 @@ class UnavailableTimeInputForm extends Component {
     timeFrom: "08:00",
     timeTo: "22:00",
     times: [
-      
     ]
   };
 

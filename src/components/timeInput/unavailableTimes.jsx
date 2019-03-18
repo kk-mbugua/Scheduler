@@ -14,8 +14,7 @@ class UnavailableTimes extends Component {
   renderTimes = () => {
     let l = this.props.times.length;
     if (l === 0) return <p>"There are no times"</p>;
-    console.log("length", l);
-
+    
     return this.props.times.map((time, index) => (
       <UnavailableTime key={index} time={time} />
     ));
