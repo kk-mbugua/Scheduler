@@ -1,0 +1,8 @@
+#Table {
+    float:right;
+}
+
+#ControlPanelButtons {
+    float:left;
+    clear:left;
+}
