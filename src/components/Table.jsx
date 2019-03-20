@@ -19,78 +19,20 @@ class Table extends Component {
           headerName: "Thursday", field: "thursday", sortable: true, filter: true 
         }, {
           headerName: "Friday", field: "friday", sortable: true, filter: true 
-        }],
-        rowData: [{
-          time: "8:45", monday: "Vaughn", tuesday: "Ida"
-        }, {
-          time: "9:00", monday: "Vaughn", tuesday: "Ida"
-        }, {
-          time: "9:15", monday: "Vaughn", tuesday: "Ian"
-        }, {
-          time: "9:30", monday: "Vaughn", tuesday: "Ida"
-        }, {
-          time: "9:45", monday: "Vaughn", tuesday: "Ida"
-        }, {
-          time: "10:00", monday: "Vaughn", tuesday: "Ian"
-        }, {
-            time: "10:15", monday: "Vaughn", tuesday: "Ida"
-          }, {
-            time: "10:30", monday: "Vaughn", tuesday: "Ian"
-          }, {
-            time: "10:45", monday: "Vaughn", tuesday: "Ida"
-          }, {
-            time: "11:00", monday: "Vaughn", tuesday: "Ida"
-          }, {
-            time: "11:15", monday: "Vaughn", tuesday: "Ian"
-          }, {
-            time: "11:30", monday: "Vaughn", tuesday: "Ida"
-          }, {
-            time: "11:45", monday: "Vaughn", tuesday: "Ida"
-          }, {
-            time: "12:00", monday: "Vaughn", tuesday: "Ida"
-          }, {
-            time: "12:15", monday: "Vaughn", tuesday: "Ian"
-          }, {
-            time: "12:30", monday: "Vaughn", tuesday: "Ida"
-          }, {
-            time: "12:45", monday: "Vaughn", tuesday: "Ida"
-          }, {
-            time: "1:00", monday: "Vaughn", tuesday: "Ida"
-          }, {
-            time: "1:15", monday: "Vaughn", tuesday: "Ian"
-          }, {
-            time: "1:30", monday: "Vaughn", tuesday: "Ida"
-          }, {
-            time: "1:45", monday: "Vaughn", tuesday: "Ida"
-          }, {
-            time: "2:00", monday: "Vaughn", tuesday: "Ida"
-          }, {
-            time: "2:15", monday: "Vaughn", tuesday: "Ian"
-          }, {
-            time: "2:30", monday: "Vaughn", tuesday: "Ida"
-          }, {
-            time: "2:45", monday: "Vaughn", tuesday: "Ida"
-          }, {
-            time: "3:00", monday: "Vaughn", tuesday: "Ida"
-          }, {
-            time: "3:15", monday: "Vaughn", tuesday: "Ian"
-          }, {
-            time: "3:30", monday: "Vaughn", tuesday: "Ida"
-          }, {
-            time: "3:45", monday: "Vaughn", tuesday: "Ida"
-          }, {
-            time: "4:00", monday: "Vaughn", tuesday: "Ida"
-          }, {
-            time: "4:15", monday: "Vaughn", tuesday: "Ian"
-          }, {
-            time: "4:30", monday: "Vaughn", tuesday: "Ida"
-          }, {
-            time: "4:45", monday: "Vaughn", tuesday: "Ida"
-          }, {
-            time: "5:00", monday: "Vaughn", tuesday: "Ida"
-          }]
+        }]//,
+        //rowData: [{
+        //  time: "8:45", monday: "Vaughn", tuesday: "Ida"
+        //}}
+        
       }
     }
+    
+    componentDidMount() {
+      fetch('TableData.json')
+      //.then(result => result.json())
+      //.then(rowData => this.setState({rowData}))
+    }
+    
 
     render() {
         return (
