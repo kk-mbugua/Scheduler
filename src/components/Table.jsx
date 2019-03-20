@@ -2,37 +2,39 @@ import React, { Component } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
-import TableData from './Data/TableData'
+import TableData from './Data/TableData';
+import './Styles/Components.css'
 
 class Table extends Component {
     constructor(props) {
       super(props);
       this.state = {
-        columnDefs: [{
-          headerName: "Time", field: "time", sortable: true, filter: true, checkboxSelection: true
+        columnDefs: [{ //declaring the headers of the table columns
+          headerName: "Time", field: "time", filter: true, checkboxSelection: true, pinned :true
         }, {
-          headerName: "Monday", field: "monday", sortable: true, filter: true 
+          headerName: "Monday", field: "monday", filter: true 
         }, {
-          headerName: "Tuesday", field: "tuesday", sortable: true, filter: true 
+          headerName: "Tuesday", field: "tuesday", filter: true 
         }, {
-          headerName: "Wednesday", field: "wednesday", sortable: true, filter: true 
+          headerName: "Wednesday", field: "wednesday", filter: true 
         }, {
-          headerName: "Thursday", field: "thursday", sortable: true, filter: true 
+          headerName: "Thursday", field: "thursday", filter: true 
         }, {
-          headerName: "Friday", field: "friday", sortable: true, filter: true 
+          headerName: "Friday", field: "friday", filter: true 
         }],
-        rowData: TableData
+        rowData: TableData // populating the rows with data from a json file
         
       }
     }
 
     render() {
-        return (
+        return ( //rendering the table
           <div 
+            id = "Table"
             className="ag-theme-balham"
             style={{ 
             height: '750px', 
-            width: '1200px' }} 
+            width: '1202px' }} 
           >
             <AgGridReact
               columnDefs={this.state.columnDefs}
