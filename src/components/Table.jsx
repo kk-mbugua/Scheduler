@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
+import TableData from './Data/TableData'
 
 class Table extends Component {
     constructor(props) {
@@ -19,20 +20,11 @@ class Table extends Component {
           headerName: "Thursday", field: "thursday", sortable: true, filter: true 
         }, {
           headerName: "Friday", field: "friday", sortable: true, filter: true 
-        }]//,
-        //rowData: [{
-        //  time: "8:45", monday: "Vaughn", tuesday: "Ida"
-        //}}
+        }],
+        rowData: TableData
         
       }
     }
-    
-    componentDidMount() {
-      fetch('TableData.json')
-      //.then(result => result.json())
-      //.then(rowData => this.setState({rowData}))
-    }
-    
 
     render() {
         return (
