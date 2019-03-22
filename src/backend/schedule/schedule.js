@@ -1,29 +1,23 @@
+const Location = require("./Location")
+const Employee = require("./Employee")
 class Schedule {
-  constructor() {
-    this.locations = [];
-    this.schedule;
-  }
+    constructor(department) {
+        this.department = department 
+        this.locations = []
+        this.employees = []
+    }
 
-  addLocation(location) {
-    this.locations.push(location);
-  }
+    addLocation(location){
+        this.locations.push(location)
+    }
 
-  getLocation(locationName) {
-    return this.locations.filter(
-      location => location.getLocationName() == locationName
-    )
+    addEmployee(employee) {
+        this.employees.push(employee)
+    }
 
-  }
-
-  addEmployee() {}
-
-  getEmployeeSchedule() {}
-
-  getLocationDaySchedule() {}
-
-  getLocationWeekSchedule() {}
-
-  getDaySchedule() {}
+    autoAddShifts(preferences) {
+        console.log("autoAdded")
+    }
 }
 
-module.exports = Schedule;
+module.exports = Schedule

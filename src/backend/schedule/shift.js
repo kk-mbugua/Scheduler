@@ -1,17 +1,9 @@
-const TimeSlot = require("./timeSlot")
 
 class Shift {
   constructor(employee, from, to) {
-    this.employee = employee;
-    this.timeSlot = new TimeSlot(from, to)
-  }
-
-  getTimeSlot() {
-    return this.timeSlot;
-  }
-
-  getEmployeeName() {
-    return this.employeeName;
+    this.employee = employee
+    this.from = from
+    this.to = to
   }
 }
 

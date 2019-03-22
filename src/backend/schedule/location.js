@@ -1,36 +1,19 @@
-const Slots = require("./slots");
-const Shift = require("./shift")
+const Slot = require("./Slot")
 
 class Location {
-  constructor(locationName, numOfSlots) {
-    this.locationName = locationName;
-    this.numOfSlots = numOfSlots;
-    this.slots = new Slots(locationName, numOfSlots);
-  }
+    constructor(name, numberOfSlots) {
+        this.name = name
+        this.numberOfSlots = numberOfSlots
+        this.slots = []
+        this.addSlots()
+    }
 
-  getLocationName() {
-    return this.locationName;
-  }
-
-  getNumOfSlots() {
-    return this.slots;
-  }
-
-  getSlot(slotNumber) {
-    const slot = this.slots
-      .getSlots()
-      .filter(slot => slotNumber == slot.getSlotNumber());
-    return slot[0];
-  }
-
-  addShift(slotNum, employee, day, from, to) {
-    let slot = this.getSlot(slotNum);
-    
-    let shifts = slot
-      .getShiftss()
-      .filter(shifts => shifts.getWorkDay().getWorkDayName().toLowerCase() == day.toLowerCase())[0];
-    shifts.addShift(employee, from, to)
-  }
+    addSlots() {
+        for (let i = 0; i < this.numberOfSlots; i++) {
+            const slot = new Slot(i)
+            this.slots.push(slot)
+        }
+    }
 }
 
-module.exports = Location;
+module.exports = Location

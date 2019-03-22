@@ -1,7 +1,6 @@
-const Schedule = require("./schedule")
-
+const Schedule = require("./Schedule")
 class CreateSchedule {
-    constructor() {
-        
+    constructor(departmentName) {
+        this.schedule = new Schedule(departmentName)
     }
 }

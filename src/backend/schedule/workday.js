@@ -1,32 +1,35 @@
-const TimeSlot = require("./timeSlot")
-
+const TimeSlot = require("./TimeSlot")
+const Shift = require("./Shift")
 class WorkDay {
-  constructor(dayName, from, to) {
-    this.dayName = dayName;
-    this.timeSlot = new TimeSlot(from, to)
-    this.isWorkingDay = true;
-  }
+    constructor(name, from, to){
+        this.name = name
+        this.from = from
+        this.to = to
+        this.unfilledIntervals = []
+        this.timeAsIntervals()
+        this.shifts = []
+    }
+    timeAsIntervals(){
+        const t = new TimeSlot(this.from, this.to)
+        t.intervals.forEach(interval => {
+            this.unfilledIntervals.push(interval)
+        });
+    }
 
-  changeStartTime(time) {
-    this.from = time;
-  }
-  changeEndTime(time) {
-    this.to = time;
-  }
-  setIsWorkingDay(value) {
-    this.isWorkingDay = value;
-  }
-  getTimeSlot() {
-    return this.timeSlot;
-  }
+    updateUnfilledIntervals(from, to) {
+        let takenTimes = new TimeSlot(from, to).intervals
+        takenTimes.forEach(interval => {
+            let index = this.unfilledIntervals.indexOf(interval)
+            this.unfilledIntervals.splice(index, 1)
+        })
+    }
 
-  getIsWorkingDay() {
-    return this.isWorkingDay;
-  }
-  getWorkDayName() {
-    return this.dayName;
-  }
+    addShift(employee, from, to) {
+        const shift = new Shift(employee, from, to)
+        this.shifts.push(shift)
+        this.updateUnfilledIntervals(from, to)
+    }
 
 }
 
-module.exports = WorkDay;
+module.exports = WorkDay

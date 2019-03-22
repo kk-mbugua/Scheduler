@@ -1,56 +1,35 @@
-const Shift = require("./shift");
-const TimeSlot = require("./timeSlot");
-const UnavailableTimes = require("./unavailableTimes");
-
+const TimeSlot = require("./TimeSlot");
 class Employee {
   constructor(name) {
-    this.name = name;
-    this.unavailableTimes = new UnavailableTimes();
-    this.shifts = [];
-    this.monday = [];
-    this.tuesday = []
-    this.wednesday = []
-    this.thursday = []
-    this.friday = []
+    this.name = name
+    this.availableTimes = {
+      monday: [],
+      tuesday: [],
+      wednesday: [],
+      thursday: [],
+      friday: [],
+      saturday: [],
+      sunday: []
+    };
   }
 
-  updateUnavailableTimes(day, from, to) {
-    this.unavailableTimes.addUnavailableTime(day, from, to);
-    
-  }
-
-  getAvailableTimesIntervals(day){
-      day = day.toLowerCase()
-      return this[day]
-  }
-
-  populateAvailableTimes() {
-    let o = Object.getOwnPropertyNames(this);
-    for (let i = 3; i < o.length; i++) {
-      this[o[i]] = this.calcAvailableTimes(o[i]);
-    }
-  }
-
-  calcAvailableTimes(day) {
-    let unavail = this.unavailableTimes[day];
-
-    let unavailTimesIntervals = [];
-    unavail.forEach(u => {
-      u.getIntervals().forEach(e => {
-        unavailTimesIntervals.push(e);
-      });
+  addAvailableTime(day, from, to) {
+    const t = new TimeSlot(from, to);
+    const intervals = t.intervals
+    intervals.forEach(interval => {
+        this.availableTimes[day].push(interval)
     });
-   
-
-    let t = new TimeSlot("0845", "2200");
-    let allIntervals = t.intervals;
-
-    let availableTimes = allIntervals.filter(
-      interval => unavailTimesIntervals.indexOf(interval) < 0
-    );
-    
-    return availableTimes;
   }
+
+  updateAvailableTime(day, from, to) {
+      let takenTimes = new TimeSlot(from, to).intervals
+      takenTimes.forEach(interval => {
+          let index = this.availableTimes[day].indexOf(interval)
+          this.availableTimes[day].splice(index, 1)
+      })
+  }
+
+  
 }
 
 module.exports = Employee;

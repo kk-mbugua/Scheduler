@@ -2,88 +2,50 @@ class TimeSlot {
   constructor(from, to) {
     this.from = from;
     this.to = to;
-    this.timeSlotInterval = 1;
-    this.duration = 0;
-    this.intervals = [];
-    this.getDurationAndIntervals();
-  }
-  getStartTime() {
-    return this.from;
-  }
-  getEndTime() {
-    return this.to;
-  }
-  getDuration() {
-    return this.duration;
-  }
-  getIntervals() {
-    return this.intervals;
   }
 
-  getHoursAndMinutesAsString(time) {
-    const list = [time[0] + time[1], time[2] + time[3]];
-    return list;
-  }
+  get intervals() {
+    const interval = 5;
 
-  getHoursMinutesMilli(hours, mins) {
-    hours = parseInt(hours);
-    mins = parseInt(mins);
-    return hours * 60 * 60 * 1000 + mins * 60 * 1000;
-  }
+    const from = this.from;
+    let intervals = [this.from];
+    const to = this.to;
+    let fromTime = this.getHoursMinutes(from);
+    let toTime = this.getHoursMinutes(to);
 
-  getTimeFromTo() {
-    const from = this.getHoursAndMinutes(this.from);
-    const fromMili = this.getHoursMinutesMilli(from[0], from[1]);
-    const to = this.getHoursAndMinutes(this.to);
-    const toMili = this.getHoursMinutesMilli(to[0], to[1]);
-
-    const timeFrom = new Date();
-    timeFrom.setTime(0);
-    timeFrom.setTime(fromMili);
-    const timeTo = new Date();
-    timeTo.setTime(0);
-    timeTo.setTime(toMili);
-
-    return [timeFrom, timeTo];
-  }
-
-  addMinutes(time, mins) {
-    const hoursAndMinutes = this.getHoursAndMinutesAsString(time);
-    let hours = parseInt(hoursAndMinutes[0]);
-    let minutes = parseInt(hoursAndMinutes[1]);
-    const minsToAdd = mins % 60;
-    const hoursToAdd = Math.floor(mins / 60);
-    hours += hoursToAdd;
-    minutes += minsToAdd;
-    if (minutes == 60) {
-      hours += 1;
-      minutes = 0;
+    while (
+      !(fromTime.hour == toTime.hour && fromTime.minute == toTime.minute)
+    ) {
+      fromTime.minute += interval;
+      if (fromTime.minute == 60) {
+        fromTime.hour += 1;
+        fromTime.minute = 0;
+      }
+      intervals.push(this.timeToString(fromTime.hour, fromTime.minute));
     }
-    let hoursAsString = hours.toString();
-    let minutesAsString = minutes.toString();
-    if (hoursAsString.length == 1) {
-      hoursAsString = "0" + hoursAsString;
-    }
-    if (minutesAsString.length == 1) {
-      minutesAsString = "0" + minutesAsString;
-    }
-    const finalTimeString = hoursAsString + minutesAsString;
-    return finalTimeString;
+    return intervals;
   }
 
-  getDurationAndIntervals() {
-    let intervals = [];
-    let from = this.from;
-    let to = this.to;
-    let mins = 0;
-    while (from != to) {
-      intervals.push(from);
-      mins += 1;
-      from = this.addMinutes(from, 1);
+  get duration() {
+    return this.intervals.length;
+  }
+
+  timeToString(hour, minute) {
+    let strHour = hour.toString();
+    let strMin = minute.toString();
+    if (strHour.length < 2) {
+      strHour = "0" + strHour;
     }
-    intervals.push(from)
-    this.duration = mins;
-    this.intervals = intervals;
+    if (strMin.length < 2) {
+      strMin = "0" + strMin;
+    }
+    return strHour + strMin;
+  }
+
+  getHoursMinutes(time) {
+    const hour = parseInt(time[0] + time[1]);
+    const minute = parseInt(time[2] + time[3]);
+    return { hour, minute };
   }
 }
 
