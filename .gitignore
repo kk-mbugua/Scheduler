@@ -7,7 +7,8 @@
 
 # testing
 /coverage
-/src/compTester.js
+/src/frontend/compTester.js
+/src/index.js
 
 # production
 /build
