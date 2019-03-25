@@ -97,7 +97,6 @@ class TimeInputForm extends Component {
   };
 
   render() {
-    console.log(this.state.times.length);
     return (
       <div>
         <TimeInput
