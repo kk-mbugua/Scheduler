@@ -85,21 +85,16 @@ class TimeInputForm extends Component {
   };
 
   renderSubmitButton = () => {
-    if (this.state.times.length > 0 ) {
+    if (this.state.times.length > 0) {
       const comp = (
-      <Fab
-      margin={30}
-      variant="extended"
-      aria-label="Save"
-      color="primary"
-    >
-      <SaveIcon />
-      Submit
-    </Fab>)
-    return comp
+        <Fab margin={30} variant="extended" aria-label="Save" color="primary">
+          <SaveIcon />
+          Submit
+        </Fab>
+      );
+      return comp;
     }
-    
-  }
+  };
 
   render() {
     console.log(this.state.times.length);
@@ -119,8 +114,16 @@ class TimeInputForm extends Component {
             onCheck={this.handleOnCheck}
             onAllCheck={this.handleOnAllCheck}
           />
-          {this.renderSubmitButton()}
-          
+          <Fab
+            disabled={this.state.times.length < 1}
+            margin={30}
+            variant="extended"
+            aria-label="Save"
+            color="primary"
+          >
+            <SaveIcon />
+            Submit
+          </Fab>
         </div>
       </div>
     );
