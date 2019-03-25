@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import UnavailableTimeInputForm from "./components/timeInput/unavailableTimeInputForm"
+//import TimeTable from "../components/timeInput/timeTable"
+import TimeInputForm from "../components/timeInput/timeInputForm"
+
 
 
 class Tester extends Component {
@@ -7,9 +9,9 @@ class Tester extends Component {
   render() {
     return (
       <React.Fragment>
-        <UnavailableTimeInputForm>
+        <TimeInputForm>
 
-        </UnavailableTimeInputForm>
+        </TimeInputForm>
 
       </React.Fragment>
     );

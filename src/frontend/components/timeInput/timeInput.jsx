@@ -4,8 +4,9 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormGroup from "@material-ui/core/FormGroup";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import IconButton from "@material-ui/core/IconButton";
+import DeleteIcon from "@material-ui/icons/Delete";
 
-class UnavailableTimeInput extends Component {
+class TimeInput extends Component {
   state = {
     data: []
   };
@@ -19,13 +20,14 @@ class UnavailableTimeInput extends Component {
   };
 
   render() {
-    const {day, timeFrom, timeTo} = this.props.data
+    const { day, timeFrom, timeTo } = this.props.data;
+    const canDelete = this.props.canDelete;
     return (
       <FormGroup row={true} noValidate>
         <TextField
           id="day"
           name="day"
-          label="on"
+          label="On"
           value={day}
           select
           required={true}
@@ -33,8 +35,7 @@ class UnavailableTimeInput extends Component {
           margin="normal"
           onChange={event => this.props.onChange(event)}
         >
-        {this.renderDays()}
-        
+          {this.renderDays()}
         </TextField>
         <TextField
           id="timeFrom"
@@ -54,7 +55,7 @@ class UnavailableTimeInput extends Component {
         <TextField
           id="timeTo"
           name="timeTo"
-          label="to"
+          label="To"
           type="time"
           defaultValue={timeTo}
           inputProps={{
@@ -74,9 +75,17 @@ class UnavailableTimeInput extends Component {
         >
           <AddBoxIcon size="large" color="primary" aria-label="Add" />
         </IconButton>
+        <IconButton
+          size="medium"
+          color="primary"
+          onClick={() => this.props.onDelete()}
+          disabled={canDelete}
+        >
+          <DeleteIcon disabled={canDelete} />
+        </IconButton>
       </FormGroup>
     );
   }
 }
 
-export default UnavailableTimeInput;
+export default TimeInput;
