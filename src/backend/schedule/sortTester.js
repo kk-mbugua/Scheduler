@@ -35,6 +35,7 @@ function sorter(schedule) {
   let locations = [hd, sc, tl];
 
   locations.forEach(location => {
+    console.log(location.name)
     location.slots.forEach(slot => {
       days.forEach((day, index) => {
         let fromTo = worktimes[index].split("-");
@@ -49,6 +50,8 @@ function sorter(schedule) {
   schedule.addLocation(sc);
   schedule.addLocation(tl);
 
+
+
   //employees
   let employessName = [
     "advark",
@@ -62,8 +65,12 @@ function sorter(schedule) {
   let employees = [];
   let data = new Data();
   employessName.forEach(emp => {
-    let employee = new Employee(emp);
     let empData = data[emp];
+    let employee = new Employee(
+      empData.name,
+      empData.requestedHours,
+      empData.isCommuter
+    );
     days.forEach(day => {
       empData[day].forEach(d => {
         let time = d.split("-");
@@ -79,7 +86,7 @@ function sorter(schedule) {
     schedule.addEmployee(employee);
   });
 
-    schedule.autoAddShifts()
+  schedule.autoAddShifts();
   return schedule;
 }
 
@@ -87,3 +94,4 @@ function sorter(schedule) {
 let schedule = new Schedule("University Technology");
 let sorted = sorter(schedule);
 
+console.log(schedule.locations);

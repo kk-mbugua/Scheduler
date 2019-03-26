@@ -1,5 +1,7 @@
 const Location = require("./Location")
 const Employee = require("./Employee")
+const Scheduler = require("./scheduler")
+
 class Schedule {
     constructor(department) {
         this.department = department 
@@ -16,7 +18,7 @@ class Schedule {
     }
 
     autoAddShifts(preferences) {
-        console.log("autoAdded")
+        new Scheduler(this.locations, this.employees)
     }
 }
 
