@@ -88,7 +88,9 @@ class Scheduler {
   }
 
   //returns most suitable employee
-  evaluate(workday) {}
+  evaluate(workday) {
+      
+  }
 }
 
 module.exports = Scheduler;
