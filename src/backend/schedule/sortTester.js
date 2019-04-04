@@ -1,13 +1,10 @@
-const TimeSlot = require("./TimeSlot");
-const Shift = require("./Shift");
 const Employee = require("./Employee");
-const WorkDay = require("./WorkDay");
-const Slot = require("./Slot");
 const Location = require("./Location");
 const Schedule = require("./Schedule");
 const Data = require("./data");
 
 function sorter(schedule) {
+  
   //days of the week
   const days = [
     "monday",
@@ -35,7 +32,6 @@ function sorter(schedule) {
   let locations = [hd, sc, tl];
 
   locations.forEach(location => {
-    console.log(location.name)
     location.slots.forEach(slot => {
       days.forEach((day, index) => {
         let fromTo = worktimes[index].split("-");
@@ -82,16 +78,60 @@ function sorter(schedule) {
     employees.push(employee);
   });
 
+
   employees.forEach(employee => {
     schedule.addEmployee(employee);
   });
 
   schedule.autoAddShifts();
+
+  printByLocation(schedule)
+  
+
   return schedule;
 }
 
+function printByLocation(sorted) {
+  sorted.locations.forEach(location => {
+    console.log()
+    console.log("--------------------")
+    console.log(location.name)
+    console.log("--------------------")
+    location.slots.forEach(slot => {
+      console.log("Slot",slot.slotNumber,":")
+      Object.values(slot.workDays).forEach(workDay=> {
+        console.log(workDay.name.toUpperCase())
+        workDay.shifts.forEach(shift=>{
+          console.log(shift.employee.name, shift.from, shift.to)
+        })
+      })
+    })
+  })
+
+}
+
+function printByEmployee(sorted) {
+  sorted.employees.forEach(employee=> {
+    console.log()
+    console.log("--------------------")
+    console.log(employee.name)
+    console.log("--------------------")
+    employee.shifts.forEach(shift=> {
+      console.log(shift.employee.name, shift.workDay.name, shift.location.name, shift.from, shift.to)
+    })
+  })
+}
+
+//console.log("STARTED")
 //schedule
 let schedule = new Schedule("University Technology");
 let sorted = sorter(schedule);
 
-console.log(schedule.locations);
+//console.log("ENDED")
+
+//printByEmployee()
+//printByLocation()
+//console.log()
+
+
+

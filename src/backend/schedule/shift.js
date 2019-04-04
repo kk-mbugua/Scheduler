@@ -1,7 +1,9 @@
 const TimeSlot = require("./timeSlot")
 class Shift {
-  constructor(employee, from, to) {
+  constructor(employee, location, workDay, from, to) {
     this.employee = employee
+    this.location = location
+    this.workDay = workDay
     this.from = from
     this.to = to
   }

@@ -34,9 +34,10 @@ class Employee {
       })
   }
 
-  addShift(from, to) {
-    const shift = new Shift(this, from, to)
+  addShift(location, workDay, from, to) {
+    const shift = new Shift(this, location, workDay, from, to)
     this.shifts.push(shift)
+    this.reduceAvailableTime(workDay.name, from, to)
   }
 
   getTotalWorkTime() {

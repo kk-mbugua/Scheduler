@@ -1,5 +1,4 @@
-const Location = require("./Location")
-const Employee = require("./Employee")
+
 const Scheduler = require("./scheduler")
 
 class Schedule {

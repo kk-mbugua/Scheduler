@@ -10,7 +10,7 @@ class Location {
 
     addSlots() {
         for (let i = 0; i < this.numberOfSlots; i++) {
-            const slot = new Slot(i)
+            const slot = new Slot(i, this)
             this.slots.push(slot)
         }
     }
