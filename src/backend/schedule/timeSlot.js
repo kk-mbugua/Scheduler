@@ -4,8 +4,12 @@ class TimeSlot {
     this.to = to;
   }
 
+  get interval(){
+    return 5
+  }
+
   get intervals() {
-    const interval = 5;
+    const interval = this.interval;
 
     const from = this.from;
     let intervals = [this.from];
@@ -14,10 +18,10 @@ class TimeSlot {
     let toTime = this.getHoursMinutes(to);
 
     while (
-      !(fromTime.hour == toTime.hour && fromTime.minute == toTime.minute)
+      !(fromTime.hour === toTime.hour && fromTime.minute === toTime.minute)
     ) {
       fromTime.minute += interval;
-      if (fromTime.minute == 60) {
+      if (fromTime.minute === 60) {
         fromTime.hour += 1;
         fromTime.minute = 0;
       }
@@ -27,7 +31,10 @@ class TimeSlot {
   }
 
   get duration() {
-    return this.intervals.length;
+    if (this.intervals.length > 1){
+    return (this.intervals.length-1) * this.interval;
+    }
+    return 0
   }
 
   timeToString(hour, minute) {
@@ -43,10 +50,39 @@ class TimeSlot {
   }
 
   getHoursMinutes(time) {
+    if (time === undefined) {
+      console.log("time is undefined")
+    }
     const hour = parseInt(time[0] + time[1]);
     const minute = parseInt(time[2] + time[3]);
     return { hour, minute };
   }
+
+  earlierTime(time1, time2) {
+    const time1Hour = parseInt(time1[0]+time1[1])
+    const time2Hour = parseInt(time2[0]+time2[1])
+    const time1Minute = parseInt(time1[2]+time1[3])
+    const time2Minute = parseInt(time2[2]+time2[3])
+    let earlierTime = ""
+
+    if (time1Hour < time2Hour) {
+      earlierTime = time1
+    } else if (time1Hour > time2Hour) {
+      earlierTime = time2
+    } else {
+      if (time1Minute < time2Minute) {
+        earlierTime = time1
+      } else if (time1Minute > time2Minute) {
+        earlierTime = time2
+      } else {
+        return -1
+      }
+
+    }
+
+    return earlierTime
+  }
 }
+
 
 module.exports = TimeSlot;
