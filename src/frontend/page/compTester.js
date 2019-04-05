@@ -1,11 +1,13 @@
 import React, { Component } from "react";
-import LoginScene from "../scenes/loginScene"
+
+import TimeInputScene from "../scenes/timeInputScene"
+
 
 class Tester extends Component {
   render() {
     return (
       <React.Fragment>
-        <LoginScene/>
+        <TimeInputScene/>
       </React.Fragment>
     );
   }
