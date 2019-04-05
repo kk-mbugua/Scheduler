@@ -1,7 +1,11 @@
 const TimeSlot = require("./TimeSlot");
+const Shift = require("./shift")
+
 class Employee {
-  constructor(name) {
+  constructor(name, requestedHours, isCommuter) {
     this.name = name
+    this.requestedHours = requestedHours
+    this.isCommuter = isCommuter
     this.availableTimes = {
       monday: [],
       tuesday: [],
@@ -11,6 +15,7 @@ class Employee {
       saturday: [],
       sunday: []
     };
+    this.shifts = []
   }
 
   addAvailableTime(day, from, to) {
@@ -21,12 +26,27 @@ class Employee {
     });
   }
 
-  updateAvailableTime(day, from, to) {
+  reduceAvailableTime(day, from, to) {
       let takenTimes = new TimeSlot(from, to).intervals
       takenTimes.forEach(interval => {
           let index = this.availableTimes[day].indexOf(interval)
           this.availableTimes[day].splice(index, 1)
       })
+  }
+
+  addShift(location, workDay, from, to) {
+    const shift = new Shift(this, location, workDay, from, to)
+    this.shifts.push(shift)
+    this.reduceAvailableTime(workDay.name, from, to)
+  }
+
+  getTotalWorkTime() {
+    let totalWorkTime = 0
+    this.shifts.forEach(shift => {
+      totalWorkTime += shift.duration
+    })
+
+    return totalWorkTime
   }
 
   

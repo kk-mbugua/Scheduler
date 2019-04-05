@@ -8,7 +8,9 @@ class Data {
             thursday : ["0000-2400"],
             friday : ["0000-2400"],
             saturday : ["0000-2400"],
-            sunday : ["0000-2400"]
+            sunday : ["0000-2400"],
+            requestedHours: 15,
+            isCommuter: false
         }
         this.tony = {
             name: "tony",
@@ -18,7 +20,9 @@ class Data {
             thursday : ["0000-1015", "1145-1315", "1430-2400"],
             friday : ["0000-1315", "1430-1630", "1700-2400"],
             saturday : ["0000-2400"],
-            sunday : ["0000-2400"]
+            sunday : ["0000-2400"],
+            requestedHours: 8,
+            isCommuter: true
         }
         this.lisa = {
             name: "lisa",
@@ -28,7 +32,9 @@ class Data {
             thursday : ["0000-0845", "1200-1300", "1425-1700"],
             friday : ["0000-0845", "1200-1430", "1600-2400"],
             saturday : ["0000-2400"],
-            sunday : ["0000-2400"]
+            sunday : ["0000-2400"],
+            requestedHours: 4,
+            isCommuter: false
         }
 
         this.jenny = {
@@ -39,7 +45,9 @@ class Data {
             thursday : ["1300-1645"],
             friday : ["0000-2400"],
             saturday : ["0000-2400"],
-            sunday : ["0000-2400"]
+            sunday : ["0000-2400"],
+            requestedHours: 18,
+            isCommuter: false
         }
 
         this.peaches = {
@@ -50,7 +58,9 @@ class Data {
             thursday : ["0000-1015", "1200-1545", "1845-2400"],
             friday : ["0800-2200"],
             saturday : ["0800-2200"],
-            sunday : ["0800-2200"]
+            sunday : ["0800-2200"],
+            requestedHours: 10,
+            isCommuter: true
         }
 
         this.summer = {
@@ -61,7 +71,9 @@ class Data {
             thursday : ["0000-0845", "1015-1315", "1430-1630", "1830-2400"],
             friday : ["0000-1315", "1430-1600", "1700-2400"],
             saturday : ["0000-2400"],
-            sunday : ["0000-2400"]
+            sunday : ["0000-2400"],
+            requestedHours: 8,
+            isCommuter: false
         }
         this.scooter = {
             name: "scooter",
@@ -71,7 +83,9 @@ class Data {
             thursday : ["0000-1015", "1145-1430", "1600-1630", "1800-2400" ],
             friday : ["0000-0845", "1200-1300", "1600-2400"],
             saturday : ["0000-2400"],
-            sunday : ["0000-2400"]
+            sunday : ["0000-2400"],
+            requestedHours: 15,
+            isCommuter: false
         }
     }
 }
