@@ -1,0 +1,22 @@
+.loginPaper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  width: 350px;
+  padding: 3%;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+.avatar {
+  background-color: rgb(225, 49, 90) !important;
+}
+
+.button {
+  margin-bottom: 3px;
+}
