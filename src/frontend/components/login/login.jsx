@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./login.css";
+import styles from "./login.module.css"
 import Paper from "@material-ui/core/Paper";
 import Avatar from "@material-ui/core/Avatar";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
@@ -13,14 +13,14 @@ class Login extends Component {
   state = {};
   render() {
     return (
-      <Paper className={"loginPaper"} elevation={7}>
-        <Avatar className={"avatar"}>
+      <Paper className={styles.loginPaper} elevation={7}>
+        <Avatar className={styles.avatar}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form className="form">
+        <form className={styles.form}>
           <FormControl margin="normal" required>
             <InputLabel htmlFor="email">Email Address</InputLabel>
             <Input id="email" name="email" autoComplete="email" autoFocus />
@@ -43,7 +43,7 @@ class Login extends Component {
             fullWidth
             variant="contained"
             color="primary"
-            className="button"
+            className={styles.button}
           >
             Sign In
           </Button>

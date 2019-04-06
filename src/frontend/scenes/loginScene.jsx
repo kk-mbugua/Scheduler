@@ -1,18 +1,14 @@
 import React, { Component } from "react";
-import NavBar from "../components/navbar/NavBar";
 import Login from "../components/login/login";
-import "./loginScene.css"
+import styles from "./loginScene.module.css";
 
 class LoginScene extends Component {
   state = {};
   render() {
     return (
-      <div>
-        <NavBar />
-        <div className="body">
-            <div className="loginDiv">
-            <Login className="login"></Login>
-            </div>
+      <div className={styles.body}>
+        <div className={styles.loginDiv}>
+          <Login />
         </div>
       </div>
     );
