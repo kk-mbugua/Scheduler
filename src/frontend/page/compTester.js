@@ -1,15 +1,14 @@
 import React, { Component } from "react";
-
-//import TimeInputScene from "../scenes/timeInputScene"
-import PageNotFound from "../components/error/pageNotFound";
-import PageNotFoundScene from "../scenes/pageNotFoundScene";
+import Shift from "../components/schedule/shift"
+import Slot from "../components/schedule/slot"
+import Times from "../components/schedule/times"
+import Schedule from "../components/schedule/schedule"
 
 class Tester extends Component {
   render() {
     return (
-      <div >
-        <PageNotFoundScene />
-      </div>
+
+        <Schedule />
     );
   }
 }
