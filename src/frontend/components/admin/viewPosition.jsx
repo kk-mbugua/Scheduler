@@ -15,7 +15,7 @@ class ViewPosition extends Component {
     console.log(workdays)
     const comp = properties.map(property => {
       return (
-        <ListItem>
+        <ListItem key={property[0]}>
           <ListItemText
           primary={property[0] + " From: "+ property[1].from + " To: " + property[1].to}
           />

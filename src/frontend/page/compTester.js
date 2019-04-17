@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import Positions from "../components/admin/positions"
+import PositionsAndLocations from "../components/admin/positionsAndLocations"
 
 
 class Tester extends Component {
   render() {
     return (
 
-        <Positions></Positions>
+        <PositionsAndLocations></PositionsAndLocations>
     );
   }
 }

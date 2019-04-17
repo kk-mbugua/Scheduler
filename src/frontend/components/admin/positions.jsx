@@ -48,35 +48,6 @@ class Positions extends Component {
     this.setState({ openView: false });
   };
 
-  handleDeleteOnClick = id => {
-    let oldPositions = [...this.state.positions];
-    let positions = oldPositions.filter(position => {
-      return position.id !== id;
-    });
-    this.setState({ positions });
-  };
-
-  handleOnAddPosition = sent => {
-    let { selected, days, location, positionName } = sent;
-    const position = {
-      id: this.state.positions.length + 1,
-      name: positionName,
-      location: location,
-      workdays: {}
-    };
-
-    days.forEach(day => {
-      if (!selected.includes(day.name)) {
-        position.workdays[day.name] = { from: day.from, to: day.to };
-      }
-    });
-
-    const positions = [...this.state.positions];
-    positions.unshift(position);
-    this.setState({ positions });
-    this.handleOnCloseAdd();
-  };
-
   renderView = position => {
     return (
       <ViewPosition
@@ -89,7 +60,7 @@ class Positions extends Component {
   };
 
   renderLocations = () => {
-    const comp = this.state.positions.map(position => (
+    const comp = this.props.positions.map(position => (
       <ListItem key={position.id}>
         <ListItemText primary={position.location + ": " + position.name} />
         <ListItemSecondaryAction>
@@ -104,7 +75,7 @@ class Positions extends Component {
           <IconButton
             aria-label="Delete"
             onClick={() => {
-              this.handleDeleteOnClick(position.id);
+              this.props.onDelete(position.id);
             }}
           >
             <DeleteIcon />
@@ -118,10 +89,10 @@ class Positions extends Component {
   render() {
     return (
       <Grid>
-        <Grid item>
+        <Grid styles={{ height: 500, overflow: "auto" }} item>
           <List>{this.renderLocations()}</List>
           <AppBar
-            position="fixed"
+            position="relative"
             color="primary"
             style={{ top: "auto", bottom: 0 }}
           >
@@ -134,16 +105,18 @@ class Positions extends Component {
             </ToolBar>
           </AppBar>
           <AddPosition
+            locations={this.props.locations}
             open={this.state.openAdd}
             onClose={this.handleOnCloseAdd}
-            onAddPosition={this.handleOnAddPosition}
+            onAddPosition={this.props.onAdd}
           />
-          {this.state.openView && 
-          <ViewPosition
-            positionDetails={this.state.viewPosition}
-            open={this.state.openView}
-            onClose={this.handleOnCloseView}
-          />}
+          {this.state.openView && (
+            <ViewPosition
+              positionDetails={this.state.viewPosition}
+              open={this.state.openView}
+              onClose={this.handleOnCloseView}
+            />
+          )}
         </Grid>
       </Grid>
     );

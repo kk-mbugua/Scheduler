@@ -3,18 +3,20 @@ import Grid from "@material-ui/core/Grid";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
-import EditIcon from "@material-ui/icons/Edit";
 import VisibilityIcon from "@material-ui/icons/Visibility";
-import AppBar from "@material-ui/core/AppBar"
-import ToolBar from "@material-ui/core/Toolbar"
-import AddIcon from "@material-ui/icons/Add"
-import InputBase from "@material-ui/core/InputBase"
+import AppBar from "@material-ui/core/AppBar";
+import ToolBar from "@material-ui/core/Toolbar";
+import AddIcon from "@material-ui/icons/Add";
+import InputBase from "@material-ui/core/InputBase";
+import AddLocation from "./addLocation";
+
 
 class Positions extends Component {
   state = {
+    openAdd: false,
     positions: [
       { id: 1, name: "assistant", location: "Help Desk", workdays: [] }
     ],
@@ -25,47 +27,59 @@ class Positions extends Component {
     ]
   };
 
+  handleAddOnClick = () => {
+    this.setState({ openAdd: true });
+  };
+
+  hanldeOnCloseAdd = () => {
+    this.setState({ openAdd: false });
+  };
+
+
   renderLocations = () => {
-    const comp = this.state.locations.map(location => (
+    const comp = this.props.locations.map(location => (
       <ListItem key={location.name}>
         <ListItemText
           primary={location.name}
-          secondary={"Positions: " + location.positions.toString()}
+          secondary={"Positions: " + location.positionCount.toString()}
         />
         <ListItemSecondaryAction>
-          <IconButton aria-label="View">
+        <IconButton aria-label="View">
             <VisibilityIcon />
           </IconButton>
-          <IconButton aria-label="Edit">
-            <EditIcon />
-          </IconButton>
-          <IconButton aria-label="Delete">
+          <IconButton onClick={()=>{this.handleDeleteOnClick(location.name)}} aria-label="Delete">
             <DeleteIcon />
           </IconButton>
         </ListItemSecondaryAction>
       </ListItem>
-      
     ));
     return comp;
   };
 
   render() {
-    console.log("Positions", this.state.positions);
-    console.log("Locations", this.state.locations);
     return (
       <Grid>
-        <Grid item>
+        <Grid styles={{ height:500, overflow: "auto"}} item>
           <List>{this.renderLocations()}</List>
         </Grid>
-        <AppBar position="fixed" color="primary" style={{top: "auto", bottom: 0}}>
-          <ToolBar style={{justifyContent: "space-between"}}>
-            <AddIcon ></AddIcon>
+        <AppBar
+          position="relative"
+          color="primary"
+          style={{ top: "auto", bottom: 0 }}
+        >
+          <ToolBar style={{ justifyContent: "space-between" }}>
+            <AddIcon onClick={() => this.handleAddOnClick()} />
             <InputBase
-                style={{backgroundColor: "white"}}
-                placeholder="Search…"
-              />
+              style={{ backgroundColor: "white" }}
+              placeholder="Search…"
+            />
           </ToolBar>
-          </AppBar>
+        </AppBar>
+        <AddLocation
+          open={this.state.openAdd}
+          onClose={this.hanldeOnCloseAdd}
+          onAddLocation={this.props.onAdd}
+        />
       </Grid>
     );
   }

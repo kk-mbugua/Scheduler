@@ -29,11 +29,7 @@ class AddPosition extends Component {
       { name: "Saturday", from: "08:00", to: "22:00" },
       { name: "Sunday", from: "08:00", to: "22:00" }
     ],
-    locations: [
-      { name: "Help Desk", positions: 1 },
-      { name: "Service Center", positions: 0 },
-      { name: "Telecom", positions: 0 }
-    ],
+
     location: "",
     positionName: ""
   };
@@ -65,7 +61,7 @@ class AddPosition extends Component {
   };
 
   renderLocationOptions = () => {
-    const comp = this.state.locations.map(location => (
+    const comp = this.props.locations.map(location => (
       <MenuItem key={location.name} value={location.name}>
         {location.name}
       </MenuItem>
@@ -174,6 +170,7 @@ class AddPosition extends Component {
           <Button
             onClick={() => {
               this.props.onAddPosition(toSend);
+              this.props.onClose()
             }}
             color="primary"
           >
