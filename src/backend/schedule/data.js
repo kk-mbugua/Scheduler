@@ -1,3 +1,6 @@
+
+
+// SAVE UNAVAILABLE TIME
 class Data {
     constructor() {
         this.advark = {
