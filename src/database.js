@@ -8,7 +8,8 @@ const db = new DB({
   host: 'localhost',
   database: 'studentscheduler',
   password: 'oscar1',
-  port: 5433,
+  //port: 5433,
+  port: process.env.port || 5433,
 })
 
 const getUsers = (request, response) => {
