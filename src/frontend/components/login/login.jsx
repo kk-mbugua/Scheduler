@@ -1,55 +1,54 @@
 import React, { Component } from "react";
+import styles from "./login.module.css"
+import Paper from "@material-ui/core/Paper";
+import Avatar from "@material-ui/core/Avatar";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Typography from "@material-ui/core/Typography";
+import { FormControl, FormControlLabel } from "@material-ui/core";
+import { InputLabel, Input } from "@material-ui/core";
+import Checkbox from "@material-ui/core/Checkbox";
+import Button from "@material-ui/core/Button";
 
 class Login extends Component {
   state = {};
-  styles = {
-    align_self: true
-}
   render() {
     return (
-      <React.Fragment className="mw-25">
-        <div className="mw-25">
-          <form className="form-signin">
-            <img
-              className="mb-4"
-              src="/docs/4.3/assets/brand/bootstrap-solid.svg"
-              alt=""
-              width="72"
-              height="72"
-            />
-            <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
-            <label for="inputEmail" className="sr-only">
-              Email address
-            </label>
-            <input
-              type="email"
-              id="inputEmail"
-              className="form-control"
-              placeholder="Email address"
-              required
-              autofocus
-            />
-            <label for="inputPassword" className="sr-only">
-              Password
-            </label>
-            <input
+      <Paper className={styles.loginPaper} elevation={7}>
+        <Avatar className={styles.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
+        <Typography component="h1" variant="h5">
+          Sign in
+        </Typography>
+        <form className={styles.form}>
+          <FormControl margin="normal" required>
+            <InputLabel htmlFor="email">Email Address</InputLabel>
+            <Input id="email" name="email" autoComplete="email" autoFocus />
+          </FormControl>
+          <FormControl margin="normal" required>
+            <InputLabel htmlFor="password">Password</InputLabel>
+            <Input
+              name="password"
               type="password"
-              id="inputPassword"
-              className="form-control"
-              placeholder="Password"
-              required
+              id="password"
+              autoComplete="current-password"
             />
-            <div className="checkbox mb-3">
-              <label>
-                <input type="checkbox" value="remember-me" /> Remember me
-              </label>
-            </div>
-            <button className="btn btn-lg btn-primary btn-block" type="submit">
-              Sign in
-            </button>
-          </form>
-        </div>
-      </React.Fragment>
+          </FormControl>
+          <FormControlLabel
+            control={<Checkbox value="remember" color="secondary" />}
+            label="Remember me"
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={styles.button}
+          >
+            Sign In
+          </Button>
+        </form>
+      </Paper>
     );
   }
 }
