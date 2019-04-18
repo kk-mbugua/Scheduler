@@ -9,10 +9,7 @@
     "ag-grid-enterprise": "^20.1.0",
     "ag-grid-react": "^20.1.1",
     "bootstrap": "^4.3.1",
-<<<<<<< HEAD
     "express": "^4.16.4",
-=======
->>>>>>> 701f4c800f48793ce158a5630c63468a20dc69d5
     "material-ui": "^0.20.2",
     "pg": "^7.10.0",
     "react": "^16.8.4",
