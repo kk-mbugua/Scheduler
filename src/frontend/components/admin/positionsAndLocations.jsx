@@ -15,16 +15,37 @@ class PositionsAndLocations extends Component {
     //   }
     // ],
     // locationsExample: [{ name: "Help Desk", positions:[{positions object}s] positionCount: 1}],
-
     positions: [],
     locations: []
   };
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.getLocations();
+  }
+
+  getLocations = () => {
+  
+    fetch("/api/locations")
+      .then(res => res.json())
+      .then(rawLocations => {
+        let locations = []
+        rawLocations.forEach(rawLocation=>{
+          const location ={ name: rawLocation.name,
+            positions:[],
+            positionCount: rawLocation.number_of_positions
+          }
+          locations.push(location)
+        })
+        this.setState({locations})
+      })
+  };
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.positions.length !== this.state.positions.length && this.state.positions.length > 0) {
-      this.updateLocations()
+    if (
+      prevState.positions.length !== this.state.positions.length &&
+      this.state.positions.length > 0
+    ) {
+      this.updateLocations();
     }
   }
 
@@ -89,6 +110,7 @@ class PositionsAndLocations extends Component {
   };
 
   render() {
+
     return (
       <Grid container direction="row" justify="space-around">
         <Grid className={styles.gridItem} item>
