@@ -9,15 +9,20 @@ import Table from "../components/Table"
 
 class App extends Component {
   
+  renderAdminRoutes = () => {
+    const comp = (
+      <Route path="/table" component={Table}/>
+    )
+  }
   render() {
     return (
       <BrowserRouter>
         <NavBar/>
         <Switch>
           <Route path="/" component={LoginScene} exact/>
-          <Route path="/login" component={LoginScene}/>
+          <Route path="/login" component={LoginScene} props/>
           <Route path="/timeinput" component={TimeInputScene}/>
-          <Route path="/table" component={Table}/>
+          
           <Route component={PageNotFoundScene}/>
         </Switch>
       </BrowserRouter>

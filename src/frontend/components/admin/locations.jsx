@@ -13,8 +13,7 @@ import AddIcon from "@material-ui/icons/Add";
 import InputBase from "@material-ui/core/InputBase";
 import AddLocation from "./addLocation";
 
-
-class Positions extends Component {
+class Locations extends Component {
   state = {
     openAdd: false,
     positions: [
@@ -35,7 +34,6 @@ class Positions extends Component {
     this.setState({ openAdd: false });
   };
 
-
   renderLocations = () => {
     const comp = this.props.locations.map(location => (
       <ListItem key={location.name}>
@@ -44,10 +42,15 @@ class Positions extends Component {
           secondary={"Positions: " + location.positionCount.toString()}
         />
         <ListItemSecondaryAction>
-        <IconButton aria-label="View">
+          <IconButton aria-label="View">
             <VisibilityIcon />
           </IconButton>
-          <IconButton onClick={()=>{this.handleDeleteOnClick(location.name)}} aria-label="Delete">
+          <IconButton
+            onClick={() => {
+              this.props.onDelete(location.name);
+            }}
+            aria-label="Delete"
+          >
             <DeleteIcon />
           </IconButton>
         </ListItemSecondaryAction>
@@ -59,7 +62,7 @@ class Positions extends Component {
   render() {
     return (
       <Grid>
-        <Grid styles={{ height:500, overflow: "auto"}} item>
+        <Grid styles={{ height: 500, overflow: "auto" }} item>
           <List>{this.renderLocations()}</List>
         </Grid>
         <AppBar
@@ -85,4 +88,4 @@ class Positions extends Component {
   }
 }
 
-export default Positions;
+export default Locations;

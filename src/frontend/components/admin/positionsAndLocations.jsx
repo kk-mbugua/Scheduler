@@ -24,20 +24,20 @@ class PositionsAndLocations extends Component {
   }
 
   getLocations = () => {
-  
     fetch("/api/locations")
       .then(res => res.json())
       .then(rawLocations => {
-        let locations = []
-        rawLocations.forEach(rawLocation=>{
-          const location ={ name: rawLocation.name,
-            positions:[],
-            positionCount: rawLocation.number_of_positions
-          }
-          locations.push(location)
-        })
-        this.setState({locations})
-      })
+        let locations = [];
+        rawLocations.forEach(rawLocation => {
+          const location = {
+            name: rawLocation.name,
+            positions: [],
+            positionCount: 0
+          };
+          locations.push(location);
+        });
+        this.setState({ locations });
+      });
   };
 
   componentDidUpdate(prevProps, prevState) {
@@ -67,14 +67,23 @@ class PositionsAndLocations extends Component {
   };
 
   handleDeleteLocationOnClick = name => {
-    let oldLocations = [...this.state.locations];
-    let locations = oldLocations.filter(location => {
-      return location.name !== name;
-    });
-    this.setState({ locations });
+    fetch(`/api/locations/${name}`, {method: "DELETE"});
+    this.getLocations()
   };
 
   handleAddLocation = sent => {
+    fetch("/api/locations", {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: sent,
+        number_of_positions: 0
+      })
+    });
+
     const location = { name: sent, positions: [], positionCount: 0 };
     let locations = [...this.state.locations];
     locations.unshift(location);
@@ -110,7 +119,6 @@ class PositionsAndLocations extends Component {
   };
 
   render() {
-
     return (
       <Grid container direction="row" justify="space-around">
         <Grid className={styles.gridItem} item>

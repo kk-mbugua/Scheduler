@@ -4,12 +4,11 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
-//import MenuIcon from "@material-ui/icons/Menu";
 import AccountCircle from "@material-ui/icons/AccountCircle";
-
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
-
+import {GoogleLogout} from "react-google-login"
+ 
 class NavBar extends Component {
   state = {
       pageName: "Scheduler",
@@ -23,6 +22,21 @@ class NavBar extends Component {
   handleClose = () => {
     this.setState({ anchorEl: null });
   };
+
+  onLogoutSuccess = (response)=> {
+    console.log("logout response: ", response)
+  }
+
+  renderLogout = () => {
+    const comp = (
+      <GoogleLogout
+      buttonText="Logout"
+      onLogoutSuccess={this.onLogoutSuccess}
+    >
+    </GoogleLogout>
+    )
+    return comp
+  }
 
   render() {
       const {pageName, anchorEl} = this.state
@@ -56,8 +70,10 @@ class NavBar extends Component {
               onClose={this.handleClose}
               elevation21 = "true"
             >
-              <MenuItem onClick={this.handleClose}>Request Coverage</MenuItem>
-              <MenuItem onClick={this.handleClose}>Change Work Times</MenuItem>
+              <MenuItem onClick={this.handleClose}>
+              {this.renderLogout()}
+              </MenuItem>
+      
             </Menu>
           </div>
         </Toolbar>
