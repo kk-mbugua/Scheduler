@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-//import styles from './App.css';
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import NavBar from "../components/navbar/NavBar";
 import LoginScene from "../scenes/loginScene";
 import TimeInputScene from "../scenes/timeInputScene";
 import PageNotFoundScene from "../scenes/pageNotFoundScene";
 import Table from "../components/Table";
+//const history = createBrowserHistory()
 
 class App extends Component {
   state = {
@@ -20,7 +20,6 @@ class App extends Component {
   };
 
   setLogout = () => {
-    console.log("here")
     localStorage.setItem("isLoggedIn", "false")
     this.setState({ isLoggedIn: false });
   }

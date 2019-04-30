@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 //import PositionsAndLocations from "../components/admin/positionsAndLocations"
-import LoginScene from "../scenes/loginScene"
-import Nav from "../components/navbar/NavBar"
+import AdminHome from "../components/admin/adminHome"
+import AdminHomeScene from "../scenes/adminHomeScene"
 
 
 
@@ -14,7 +14,7 @@ class Tester extends Component {
   render() {
     return (
 
-        <Nav></Nav>
+        <AdminHomeScene></AdminHomeScene>
     );
   }
 }
