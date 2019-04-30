@@ -8,7 +8,7 @@ class LoginScene extends Component {
     return (
       <div className={styles.body}>
         <div className={styles.loginDiv}>
-          <Login />
+          <Login setLogin={this.props.setLogin}/>
         </div>
       </div>
     );

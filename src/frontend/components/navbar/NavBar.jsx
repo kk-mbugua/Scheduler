@@ -24,7 +24,7 @@ class NavBar extends Component {
   };
 
   onLogoutSuccess = (response)=> {
-    console.log("logout response: ", response)
+    this.props.setLogout()
   }
 
   renderLogout = () => {
