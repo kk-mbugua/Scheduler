@@ -5,6 +5,11 @@ import styles from "./loginScene.module.css";
 
 class AdminHomeScene extends Component {
   state = {};
+
+  componentDidMount() {
+    document.title = 'Admin Home'
+  }
+  
   render() {
     return (
       <Grid className={styles.paper} container direction="column" justify="space-between" alignItems="center">

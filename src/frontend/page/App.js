@@ -5,6 +5,10 @@ import LoginScene from "../scenes/loginScene";
 import TimeInputScene from "../scenes/timeInputScene";
 import PageNotFoundScene from "../scenes/pageNotFoundScene";
 import Table from "../components/Table";
+import AdminHomeScene from "../scenes/adminHomeScene";
+import EmployeesScene from "../scenes/employeesScene";
+import AdminScheduleScene from "../scenes/adminScheduleScene";
+import PositionsScene from "../scenes/positionsScenes";
 //const history = createBrowserHistory()
 
 class App extends Component {
@@ -12,28 +16,30 @@ class App extends Component {
     isLoggedIn: false
   };
 
+
   setLogin = profile => {
     localStorage.setItem("role", profile.role);
     localStorage.setItem("email", profile.email);
-    localStorage.setItem("isLoggedIn", profile.isLoggedIn)
+    localStorage.setItem("isLoggedIn", profile.isLoggedIn);
     this.setState({ isLoggedIn: profile.isLoggedIn });
   };
 
   setLogout = () => {
-    localStorage.setItem("isLoggedIn", "false")
+    localStorage.setItem("isLoggedIn", "false");
     this.setState({ isLoggedIn: false });
-  }
+  };
 
   rednerNavBar = () => {
-    return (
-    <NavBar setLogout={this.setLogout}/>
-    )
-  }
+    return <NavBar setLogout={this.setLogout} />;
+  };
 
   componentDidMount = () => {
-    localStorage.setItem("isLoggedIn", "false");
-    localStorage.setItem("role", null);
-    localStorage.setItem("email", null);
+    if (localStorage.getItem("isLoggedIn") === null) {
+      localStorage.setItem("isLoggedIn", "false");
+      localStorage.setItem("role", null);
+      localStorage.setItem("email", null);
+      this.forceUpdate();
+    }
   };
 
   renderAdminRoutes = () => {
@@ -41,7 +47,10 @@ class App extends Component {
       <BrowserRouter>
         {this.rednerNavBar()}
         <Switch>
-          <Route path="/" component={Table} exact />
+          <Route path="/" component={AdminHomeScene} exact />
+          <Route path="/employees" component={EmployeesScene} />
+          <Route path="/schedule" component={AdminScheduleScene} />
+          <Route path="/positions" component={PositionsScene} />
           <Route component={PageNotFoundScene} />
         </Switch>
       </BrowserRouter>
@@ -63,6 +72,7 @@ class App extends Component {
     return comp;
   };
   render() {
+    console.log("Are you logged in? ", localStorage.getItem("isLoggedIn"))
     if (localStorage.getItem("isLoggedIn") === "false") {
       return <LoginScene setLogin={this.setLogin} />;
     }

@@ -1,21 +1,11 @@
 import React, { Component } from "react";
-//import PositionsAndLocations from "../components/admin/positionsAndLocations"
-import AdminHome from "../components/admin/adminHome"
-import AdminHomeScene from "../scenes/adminHomeScene"
-
-
-
+import Employees from "../components/admin/employees";
 
 class Tester extends Component {
-  state = {
-
-  }
+  state = {};
 
   render() {
-    return (
-
-        <AdminHomeScene></AdminHomeScene>
-    );
+    return <Employees />;
   }
 }
 

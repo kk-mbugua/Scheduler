@@ -14,7 +14,8 @@ class AdminHome extends Component {
   state = {};
 
   onClick = link => {
-    //this.props.history.push(link);
+    // console.log(link)
+    // return(<Redirect to={link}/>)
   };
 
   render() {
@@ -22,7 +23,7 @@ class AdminHome extends Component {
       <Paper>
         <Grid spacing={24} container direction="row">
           <Grid item xs>
-            <a href={"/"}>
+            <a href="/positions">
               <Card
                 id="Positions"
                 onClick={() => {
@@ -38,15 +39,15 @@ class AdminHome extends Component {
                   </CardContent>
                 </CardActionArea>
               </Card>
-            </a>
+              </a>
           </Grid>
 
           <Grid item xs>
-            <a href={"/"}>
+            <a href={"/schedule"}>
               <Card
                 id="schedule"
                 onClick={() => {
-                  this.onClick("/positions");
+                  this.onClick("/schedule");
                 }}
               >
                 <CardActionArea>
@@ -62,7 +63,7 @@ class AdminHome extends Component {
           </Grid>
 
           <Grid item xs>
-            <a href={"/"}>
+            <a href={"/employees"}>
               <Card
                 id="employees"
                 onClick={() => {
