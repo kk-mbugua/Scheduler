@@ -15,16 +15,37 @@ class PositionsAndLocations extends Component {
     //   }
     // ],
     // locationsExample: [{ name: "Help Desk", positions:[{positions object}s] positionCount: 1}],
-
     positions: [],
     locations: []
   };
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.getLocations();
+  }
+
+  getLocations = () => {
+    fetch("/api/locations")
+      .then(res => res.json())
+      .then(rawLocations => {
+        let locations = [];
+        rawLocations.forEach(rawLocation => {
+          const location = {
+            name: rawLocation.name,
+            positions: [],
+            positionCount: 0
+          };
+          locations.push(location);
+        });
+        this.setState({ locations });
+      });
+  };
 
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.positions.length !== this.state.positions.length && this.state.positions.length > 0) {
-      this.updateLocations()
+    if (
+      prevState.positions.length !== this.state.positions.length &&
+      this.state.positions.length > 0
+    ) {
+      this.updateLocations();
     }
   }
 
@@ -46,14 +67,23 @@ class PositionsAndLocations extends Component {
   };
 
   handleDeleteLocationOnClick = name => {
-    let oldLocations = [...this.state.locations];
-    let locations = oldLocations.filter(location => {
-      return location.name !== name;
-    });
-    this.setState({ locations });
+    fetch(`/api/locations/${name}`, {method: "DELETE"});
+    this.getLocations()
   };
 
   handleAddLocation = sent => {
+    fetch("/api/locations", {
+      method: "POST",
+      headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: sent,
+        number_of_positions: 0
+      })
+    });
+
     const location = { name: sent, positions: [], positionCount: 0 };
     let locations = [...this.state.locations];
     locations.unshift(location);

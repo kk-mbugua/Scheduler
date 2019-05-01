@@ -1,13 +1,11 @@
 import React, { Component } from "react";
-import PositionsAndLocations from "../components/admin/positionsAndLocations"
-
+import Employees from "../components/admin/employees";
 
 class Tester extends Component {
-  render() {
-    return (
+  state = {};
 
-        <PositionsAndLocations></PositionsAndLocations>
-    );
+  render() {
+    return <Employees />;
   }
 }
 

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Login from "../components/login/login";
+import Login from "../components/login/googleLogin";
 import styles from "./loginScene.module.css";
 
 class LoginScene extends Component {
@@ -8,7 +8,7 @@ class LoginScene extends Component {
     return (
       <div className={styles.body}>
         <div className={styles.loginDiv}>
-          <Login />
+          <Login setLogin={this.props.setLogin}/>
         </div>
       </div>
     );

@@ -8,6 +8,7 @@
 # testing
 /coverage
 /src/frontend/page/compTester.js
+/src/index.js
 
 
 # production

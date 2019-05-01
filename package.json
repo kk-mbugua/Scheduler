@@ -8,18 +8,28 @@
     "ag-grid-community": "^20.1.0",
     "ag-grid-enterprise": "^20.1.0",
     "ag-grid-react": "^20.1.1",
+    "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
     "express": "^4.16.4",
     "jquery": "^3.4.0",
     "knex": "^0.16.5",
     "material-ui": "^0.20.2",
+<<<<<<< HEAD
     "nan": "^2.13.2",
     "pg": "^7.10.0",
     "pg-pool": "^2.0.6",
+=======
+    "moment": "^2.24.0",
+    "moments": "0.0.2",
+    "pg": "^7.10.0",
+    "randomcolor": "^0.5.4",
+>>>>>>> 2b42386fcb3567a7dd3d9ab1c9de4f007cb586d8
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
+    "react-google-login": "^5.0.4",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
+    "save": "^2.3.3",
     "typescript": "^3.4.2"
   },
   "scripts": {
@@ -45,5 +55,6 @@
   ],
   "devDependencies": {
     "nodemon": "^1.18.11"
-  }
+  },
+  "proxy": "http://localhost:5000"
 }
