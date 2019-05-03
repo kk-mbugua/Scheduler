@@ -2,43 +2,8 @@ const db = require('../database');
 
 class ScheduleTable
 {
-  /*static attendingIds( userKey, callback )
-  {
-    db.query( 'SELECT id FROM Events WHERE username = $1', [userkey],
-              (err, res) => { if (err.error)
-                                return callback(err);
-                              callback(res);
-                            } );
-  }
-
-  static retrieveAll (callback) {
-    db.query('SELECT * from attendance', (err, res) => {
-      if (err.error)
-        return callback(err);
-      callback(res);
-    });
-  }
-
-  static retrieveAttending (event, callback) {
-    db.query('SELECT * from attendance where event = $1 ', [event], (err, res) => {
-      if (err.error)
-        return callback(err);
-      callback(res);
-    });
-  }
-
-  static insert( eventKey, userKey, transportation, notes, callback )
-  {
-    const qstring = db.queryMaker( 'Attendance' ).insert(
-                    { eventKey, userKey, transportation, notes } ).toString()
-    db.query( qstring,
-              (err, res) => { if (err.error)
-                                return callback(err);
-                              callback(res);
-                             } )
-  }*/
   static TableData ( tableKey, callback ) {
-    const id = parseInt(tableKey)
+    //const id = parseInt(tableKey)
 
     db.query('SELECT * FROM scheduledisplay WHERE schedule_id = 0', (err, res) => {
       if (err.error)
@@ -47,6 +12,26 @@ class ScheduleTable
 
       //callback.status(200).json(results.rows)
     })
+  }
+
+  
+  static newShift( id, schedule_id, shiftperiod, monday, tuesday, wednesday, thursday, friday, callback )
+  {
+    const qstring = db.queryMaker( 'scheduledisplay' ).insert( { id, schedule_id, shiftperiod, monday, tuesday, wednesday, thursday, friday } ).toString()
+    
+    db.query( qstring, (err, res) =>  { 
+      if (err.error)                        
+        return callback(err);
+      callback(res);
+    })
+  }
+  
+  static clearTable (callback) {
+    db.query('DELETE FROM table_name', (err, res) => {
+      if (err.error)
+        return callback(err);
+      callback(res);
+    });
   }
 
 }

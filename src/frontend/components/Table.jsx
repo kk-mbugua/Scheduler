@@ -3,20 +3,13 @@ import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 import './Styles/Components.css';
-//import TableData from '../../backend/API/ScheduleTable/';
-//const db = require('../../database')
-//const express = require('express')
-//const bodyParser = require('body-parser')
-//const app = express()
-//const port = 3000
-//const TableData = require('../../database');
 
 class Table extends Component {
     constructor(props) {
       super(props);
       this.state = {
         columnDefs: [{ //declaring the headers of the table columns
-          headerName: "Time", field: "time", filter: true, checkboxSelection: true, pinned :true
+          headerName: "Time", field: "shiftperiod", filter: true, checkboxSelection: true, editable : true, pinned :true
         }, {
           headerName: "Monday", field: "monday", filter: true 
         }, {
@@ -35,19 +28,13 @@ class Table extends Component {
 
     getTableData = () =>  {
     fetch(`http://localhost:5000/API/ScheduleTable/`)
-    .then(res => res.json())
+    .then(res => res.json()) 
     .then(rowData => this.setState({rowData}));
   }
-      
-    /*  fetch('../../backend/API/ScheduleTable/')
-      //.then(result => result.json())
-      //.then(rowData => this.setState({rowData}))
-      .then(result => console.log(result))
-    }*/
 
     componentDidMount() {
       this.getTableData();
-      }
+    }
 
     render() {
         return ( //rendering the table
