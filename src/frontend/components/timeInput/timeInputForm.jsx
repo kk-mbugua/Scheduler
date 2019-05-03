@@ -66,7 +66,6 @@ class TimeInputForm extends Component {
   };
   handleOnCheck = id => {
     let selected = [...this.state.selected];
-
     if (selected.indexOf(id) < 0) {
       selected.push(id);
     } else {

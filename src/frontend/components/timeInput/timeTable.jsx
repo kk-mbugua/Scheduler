@@ -8,12 +8,6 @@ import Checkbox from "@material-ui/core/Checkbox";
 
 class TimeTable extends Component {
   state = {
-    times: [
-      { id: 0, day: "Monday", from: "08:00 AM", to: "12:00 PM" },
-      { id: 1, day: "Thursday", from: "03:30 PM", to: "07:00 PM" },
-      { id: 2, day: "Thursday", from: "10:00 AM", to: "01:00 PM" },
-      { id: 3, day: "Friday", from: "08:00 AM", to: "12:00 PM" }
-    ]
   };
 
   renderRows = () => {

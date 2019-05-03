@@ -1,13 +1,11 @@
 import React, { Component } from "react";
-import TimeInputScene from "../scenes/timeInputScene";
+import Employees from "../components/admin/employees";
 
 class Tester extends Component {
+  state = {};
+
   render() {
-    return (
-      <React.Fragment>
-        <TimeInputScene />
-      </React.Fragment>
-    );
+    return <Employees />;
   }
 }
 
