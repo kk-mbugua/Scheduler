@@ -34,16 +34,10 @@ class Table extends Component {
     }
 
     getTableData = () =>  {
-<<<<<<< HEAD
     fetch(`http://localhost:5000/API/ScheduleTable/`)
     .then(res => res.json())
     .then(res => {
       console.log(res);
-=======
-      fetch(`http://localhost:5000/API/ScheduleTable/`)
-    .then(res => res.json())
-    .then(res => {
->>>>>>> 3f02d8c6b3967c2ea07244c08da63a03d3769450
       var rowData = res.map(r => [r.title, r.id]);
       this.setState({rowData}, () => console.log(this.state.rowData));
     });
