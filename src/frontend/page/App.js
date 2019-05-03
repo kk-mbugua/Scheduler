@@ -51,7 +51,10 @@ class App extends Component {
           <Route path="/employees" component={EmployeesScene} />
           <Route path="/schedule" component={AdminScheduleScene} />
           <Route path="/positions" component={PositionsScene} />
+<<<<<<< HEAD
           <Route path="/table" component={Table} />
+=======
+>>>>>>> 3f02d8c6b3967c2ea07244c08da63a03d3769450
           <Route component={PageNotFoundScene} />
         </Switch>
       </BrowserRouter>
