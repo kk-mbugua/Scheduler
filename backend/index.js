@@ -22,7 +22,7 @@ app.listen(PORT, () => {
   console.log(`Server listening on port ${PORT}!`);
 });
 
-db.query("Select * from users", (err,res) => {
+db.query("Select * from users;", (err,res) => {
 if (err.error)
     return console.log(err.error);
 console.log(`PostgreSQL connected, users table queried successfully.`)

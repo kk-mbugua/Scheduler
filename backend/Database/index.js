@@ -16,7 +16,6 @@ class Database {
       console.error('Unexpected error on idle PostgreSQL client.', err);
       process.exit(-1);
     });
-
     this.queryMaker = knex;
   }
 
@@ -25,7 +24,6 @@ class Database {
       if (err) throw err;
       const params = args.length === 2 ? args[0] : [];
       const callback = args.length === 1 ? args[0] : args[1];
-
       client.query(query, params, (err, res) => {
         done();
         if (err) {
