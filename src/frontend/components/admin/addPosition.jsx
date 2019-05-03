@@ -120,7 +120,7 @@ class AddPosition extends Component {
     const toSend = {
       selected: this.state.selected,
       days: this.state.days,
-      location: this.state.location,
+      location_name: this.state.location,
       positionName: this.state.positionName
     };
     return (

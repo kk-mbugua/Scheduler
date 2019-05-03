@@ -4,25 +4,22 @@ import Slot from "./slot";
 import Grid from "@material-ui/core/Grid";
 import styles from "./schedule.module.css";
 import Paper from "@material-ui/core/Paper";
+import Switch from "@material-ui/core/Switch";
+import EditSlot from "./editSlot";
 
 class Schedule extends Component {
   state = {
     height: 25,
-    timesWidth: "100px"
-  };
-
-  renderSlot = title => {
-    return (
-      <Grid item>
-        <Paper>{title}</Paper>
-        <Slot height={this.state.height} />
-      </Grid>
-    );
+    timesWidth: "100px",
+    editMode: true,
+    positions:[],
+    locations: [],
+    selected:[]
   };
 
   rednerTimes = (title, from, to) => {
     return (
-      <Grid item>
+      <Grid styles={{ top: 0, left: 0 }} item>
         <Paper>{title}</Paper>
         <Times
           className={styles.times}
@@ -34,21 +31,83 @@ class Schedule extends Component {
       </Grid>
     );
   };
-  render() {
+
+  renderSlot = title => {
     return (
-      <Grid
-        container
-        wrap={"nowrap"}
-        direction={"row"}
-        className={styles.schedule}
+      <Grid item>
+        <Paper>{title}</Paper>
+        <Slot height={this.state.height} />
+      </Grid>
+    );
+  };
+
+  renderSlots = () => {
+    const comp = (
+      <Grid container direction="row">
+        {this.renderSlot("Monday")}
+        {this.renderSlot("Tuesday")}
+        {this.renderSlot("Wednesday")}
+        {this.renderSlot("Thursday")}
+        {this.renderSlot("Friday")}
+      </Grid>
+    );
+    return comp;
+  };
+
+  renderEditSlot = title => {
+    return (
+      <Grid item>
+        <Paper>{title}</Paper>
+        <EditSlot height={this.state.height} />
+      </Grid>
+    );
+  };
+
+  renderEditSlots = () => {
+    const comp = (
+      <Grid container direction="row">
+        {this.renderEditSlot("Monday")}
+
+      </Grid>
+    );
+    return comp;
+  };
+
+  renderControl = () => {
+    const comp = (
+      <React.Fragment>
+      <Switch
+        checked={this.state.editMode}
+        onClick={() => this.handleEditModeSwitch()}
       >
-      {this.rednerTimes("From", "0845", "2145")}
-      {this.rednerTimes("To", "0900", "2200")}
-      {this.renderSlot("Monday")}
-      {this.renderSlot("Tuesday")}
-      {this.renderSlot("Wednesday")}
-      {this.renderSlot("Thursday")}
-      {this.renderSlot("Friday")}
+        edit mode
+      </Switch>
+
+    </React.Fragment>
+    );
+    return comp;
+  };
+
+  handleEditModeSwitch = () => {
+    this.setState({ editMode: !this.state.editMode });
+  };
+
+  render() {
+    
+    return (
+      <Grid container direction="row">
+        {this.renderControl()}
+        <Grid
+          container
+          wrap={"nowrap"}
+          direction={"row"}
+          className={styles.schedule}
+        >
+          {this.rednerTimes("From", "0845", "2145")}
+          {this.rednerTimes("To", "0900", "2200")}
+          {this.state.editMode ? this.renderEditSlots(): this.renderSlots()}
+            
+        </Grid>
       </Grid>
     );
   }

@@ -24,8 +24,8 @@ class shift extends Component {
       >
         <Paper square={true} style={{backgroundColor: this.props.color}} className={styles.shiftPaper}>
           <div className={styles.textDiv}>
-            <Typography>
-              <h2>{this.props.shiftDetail.name}</h2>
+            <Typography variant="h6">
+              {this.props.shiftDetail.name}
             </Typography>
           </div>
           <div className={styles.iconDiv}>

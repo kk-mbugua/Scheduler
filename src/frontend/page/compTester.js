@@ -1,11 +1,13 @@
 import React, { Component } from "react";
-import Employees from "../components/admin/employees";
+
+import Schedule from "../components/schedule/schedule"
+//import EditSlot from '../components/schedule/editSlot'
 
 class Tester extends Component {
   state = {};
 
   render() {
-    return <Employees />;
+    return <Schedule />;
   }
 }
 

@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import AdminHome from "../components/admin/adminHome";
+import EmployeeHome from "../components/employee/employeeHome";
 import Grid from "@material-ui/core/Grid";
-import styles from "./adminHomeScene.module.css";
+import styles from "./employeeHomeScene.module.css";
 
-class AdminHomeScene extends Component {
+class EmployeeHomeScene extends Component {
   state = {};
 
   componentDidMount() {
@@ -14,11 +14,11 @@ class AdminHomeScene extends Component {
     return (
       <Grid className={styles.paper} container direction="column" justify="space-between" alignItems="center">
         <Grid  style={{width: 900}} item>
-          <AdminHome />
+          <EmployeeHome />
         </Grid>
       </Grid>
     );
   }
 }
 
-export default AdminHomeScene;
+export default EmployeeHomeScene;

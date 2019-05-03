@@ -27,6 +27,7 @@ class Employees extends Component {
   }
 
   getEmployees = () => {
+    console.log("here");
     fetch("/api/employees")
       .then(res => res.json())
       .then(rawEmployees => {
@@ -57,7 +58,8 @@ class Employees extends Component {
         role: "employee"
       })
     });
-    this.getEmployees();
+    this.setState({ email: "" });
+    this.getEmployees()
   };
 
   renderEmployeeEmails = () => {
@@ -88,6 +90,7 @@ class Employees extends Component {
           <TextField
             id="email"
             name="email"
+            value={this.state.email}
             label="Employee Email"
             required={true}
             variant="outlined"

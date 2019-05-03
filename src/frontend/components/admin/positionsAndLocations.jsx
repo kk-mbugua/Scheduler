@@ -21,6 +21,7 @@ class PositionsAndLocations extends Component {
 
   componentDidMount() {
     this.getLocations();
+    this.getPositions()
   }
 
   getLocations = () => {
@@ -29,7 +30,9 @@ class PositionsAndLocations extends Component {
       .then(rawLocations => {
         let locations = [];
         rawLocations.forEach(rawLocation => {
+          
           const location = {
+            id: rawLocation._id,
             name: rawLocation.name,
             positions: [],
             positionCount: 0
@@ -40,6 +43,25 @@ class PositionsAndLocations extends Component {
       });
   };
 
+  getPositions = () => {
+    fetch("/api/positions")
+      .then(res => res.json())
+      .then(rawPositions => {
+        let positions = [];
+        rawPositions.forEach(rawPosition => {
+          const position = {
+            id: rawPosition._id,
+            name: rawPosition.name,
+            location: rawPosition.location_name,
+            workdays: rawPosition.days
+          };
+          positions.push(position);
+        });
+  
+        this.setState({ positions });
+      });
+  };
+
   componentDidUpdate(prevProps, prevState) {
     if (
       prevState.positions.length !== this.state.positions.length &&
@@ -47,6 +69,7 @@ class PositionsAndLocations extends Component {
     ) {
       this.updateLocations();
     }
+
   }
 
   updateLocations = () => {
@@ -67,15 +90,15 @@ class PositionsAndLocations extends Component {
   };
 
   handleDeleteLocationOnClick = name => {
-    fetch(`/api/locations/${name}`, {method: "DELETE"});
-    this.getLocations()
+    fetch(`/api/locations/${name}`, { method: "DELETE" });
+    this.getLocations();
   };
 
   handleAddLocation = sent => {
     fetch("/api/locations", {
       method: "POST",
       headers: {
-        "Accept": "application/json",
+        Accept: "application/json",
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
@@ -98,12 +121,31 @@ class PositionsAndLocations extends Component {
     this.setState({ positions });
   };
 
+  handleAddPosition2 = (sent)=>{
+    fetch("/api/positions", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        name: sent.positionName,
+        location_name: sent.location_name,
+        days: sent.days.filter(day=>{
+          return !sent.selected.includes(day.name)
+        }),
+        number_of_positions: 0
+      })
+    });
+  }
+
   handleOnAddPosition = sent => {
-    let { selected, days, location, positionName } = sent;
+    this.handleAddPosition2(sent)
+    let { selected, days, location_name, positionName } = sent;
     const position = {
       id: this.state.positions.length + 1,
       name: positionName,
-      location: location,
+      location: location_name,
       workdays: {}
     };
 

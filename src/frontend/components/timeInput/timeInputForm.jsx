@@ -8,11 +8,20 @@ import TimeTable from "./timeTable";
 
 class TimeInputForm extends Component {
   state = {
-    days: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    days: [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ],
     day: "Monday",
     timeFrom: "08:00",
     timeTo: "22:00",
     times: [],
+    timesToSend: [],
     selected: []
   };
 
@@ -21,7 +30,6 @@ class TimeInputForm extends Component {
   };
 
   timeFormat(time) {
-    console.log(typeof time);
     const splittime = time.split(":");
     let hour = splittime[0];
     let minute = splittime[1];
@@ -38,6 +46,15 @@ class TimeInputForm extends Component {
   }
 
   handleAddOnClick = () => {
+    // to send
+    const timeToSend = {
+      day: this.state.day.toLowerCase(),
+      from: this.state.timeFrom,
+      to: this.state.timeTo
+    };
+    const timesToSend = [...this.state.timesToSend]
+    timesToSend.unshift(timeToSend)
+    // to display
     const time = {
       id: this.state.times.length,
       day: this.state.day,
@@ -51,7 +68,7 @@ class TimeInputForm extends Component {
     const times = [...this.state.times];
     times.unshift(time);
 
-    this.setState({ times });
+    this.setState({ times , timesToSend});
   };
 
   handleOnAllCheck = event => {
@@ -83,19 +100,24 @@ class TimeInputForm extends Component {
     this.setState({ times, selected: [] });
   };
 
-  renderSubmitButton = () => {
-    if (this.state.times.length > 0) {
-      const comp = (
-        <Fab margin={30} variant="extended" aria-label="Save" color="primary">
-          <SaveIcon />
-          Submit
-        </Fab>
-      );
-      return comp;
-    }
+  subminOnClick = () => {
+    fetch("/api/employees/hours", {
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email: localStorage.getItem("email"),
+        times: this.state.timesToSend
+      })
+    });
   };
 
   render() {
+    // localStorage.setItem("email", "mbg.kamau@gmail.com");
+    // console.log("The Email: ", localStorage.getItem("email"));
+    // console.log("The Times: ", this.state.timesToSend);
     return (
       <div>
         <TimeInput
@@ -118,6 +140,9 @@ class TimeInputForm extends Component {
             variant="extended"
             aria-label="Save"
             color="primary"
+            onClick={() => {
+              this.subminOnClick();
+            }}
           >
             <SaveIcon />
             Submit

@@ -36,7 +36,6 @@ class Times extends Component {
         </GridListTile>
       );
     });
-    console.log(comp.length);
     return <div>{comp}</div>;
   };
 
