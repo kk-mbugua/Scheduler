@@ -4,7 +4,7 @@ var ScheduleTable = require('../models/ScheduleTable');
 var router = express.Router();
 
 router.get('/', (tableKey, res) => {
-  ScheduleTable.TableData((err, tableKey) => {
+  ScheduleTable.TableData(tableKey, (err, tableKey) => {
       if (err)
         return res.json(err);
       return res.json(tableKey);

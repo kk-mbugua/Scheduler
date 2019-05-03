@@ -38,9 +38,9 @@ class ScheduleTable
                              } )
   }*/
   static TableData ( tableKey, callback ) {
-    //const id = parseInt(request.params.id)
+    const id = parseInt(tableKey)
 
-    db.query('SELECT * FROM scheduledisplay WHERE schedule_id = 1', (error, results) => {
+    db.query('SELECT * FROM scheduledisplay WHERE schedule_id = 0', (err, res) => {
       if (err.error)
         return callback(err);
       callback(res);

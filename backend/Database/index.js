@@ -1,7 +1,7 @@
 var { Pool } = require('pg');
 const knex = require( 'knex' );
 
-const CONNECTION_STRING = process.env.DATABASE_URL || 'postgresql://robertludwick:oscarthedog@localhost:port5433/studentscheduler';
+const CONNECTION_STRING = process.env.DATABASE_URL || 'postgresql://robertludwick:oscarthedog@localhost:5433/studentscheduler';
 const SSL = process.env.NODE_ENV === 'production';
 
 
