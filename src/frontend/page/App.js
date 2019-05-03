@@ -5,6 +5,7 @@ import LoginScene from "../scenes/loginScene";
 import TimeInputScene from "../scenes/timeInputScene";
 import PageNotFoundScene from "../scenes/pageNotFoundScene";
 import Table from "../components/Table";
+import Test from "../components/tableTest";
 import AdminHomeScene from "../scenes/adminHomeScene";
 import EmployeesScene from "../scenes/employeesScene";
 import AdminScheduleScene from "../scenes/adminScheduleScene";
@@ -64,6 +65,7 @@ class App extends Component {
         {this.rednerNavBar()}
         <Switch>
           <Route path="/" component={Table} exact />
+          <Route path="/test" component={Test} exact />
           <Route path="input" component={TimeInputScene} />
           <Route component={PageNotFoundScene} />
         </Switch>

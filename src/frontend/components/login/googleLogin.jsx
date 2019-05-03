@@ -22,7 +22,7 @@ class Login extends Component {
       },
       body: JSON.stringify(response.profileObj)
     })
-      .then(res => res.json())
+      //.then(res => res.json()) //uncomment this When DB is active
       .then(profile => {
         const send = {
           isLoggedIn: profile.canLogIn,

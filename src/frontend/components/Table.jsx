@@ -2,15 +2,14 @@ import React, { Component } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
-import TableData from './Data/TableData';
-import './Styles/Components.css'
+import './Styles/Components.css';
 
 class Table extends Component {
     constructor(props) {
       super(props);
       this.state = {
         columnDefs: [{ //declaring the headers of the table columns
-          headerName: "Time", field: "time", filter: true, checkboxSelection: true, pinned :true
+          headerName: "Time", field: "shiftperiod", filter: true, checkboxSelection: true, editable : true, pinned :true
         }, {
           headerName: "Monday", field: "monday", filter: true 
         }, {
@@ -22,9 +21,19 @@ class Table extends Component {
         }, {
           headerName: "Friday", field: "friday", filter: true 
         }],
-        rowData: TableData // populating the rows with data from a json file
+        //rowData: TableData // populating the rows with data from the database
         
       }
+    }
+
+    getTableData = () =>  {
+    fetch(`http://localhost:5000/API/ScheduleTable/`)
+    .then(res => res.json()) 
+    .then(rowData => this.setState({rowData}));
+  }
+
+    componentDidMount() {
+      this.getTableData();
     }
 
     render() {
