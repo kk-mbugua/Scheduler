@@ -6,6 +6,7 @@ import TimeInputScene from "../scenes/timeInputScene";
 import PageNotFoundScene from "../scenes/pageNotFoundScene";
 import Table from "../components/Table";
 import Test from "../components/tableTest";
+import Schedule from "../components/schedule/schedule";
 import AdminHomeScene from "../scenes/adminHomeScene";
 import EmployeesScene from "../scenes/employeesScene";
 import AdminScheduleScene from "../scenes/adminScheduleScene";
@@ -67,6 +68,7 @@ class App extends Component {
         <Switch>
           <Route path="/" component={Table} exact />
           <Route path="/test" component={Test} exact />
+          <Route path="/display" component={Schedule} exact />
           <Route path="input" component={TimeInputScene} />
           <Route component={PageNotFoundScene} />
         </Switch>
