@@ -19,7 +19,8 @@ class App extends Component {
 
 
   setLogin = profile => {
-    localStorage.setItem("role", profile.role);
+    // localStorage.setItem("role", profile.role);
+    localStorage.setItem("role", "employee");
     localStorage.setItem("email", profile.email);
     localStorage.setItem("isLoggedIn", profile.isLoggedIn);
     this.setState({ isLoggedIn: profile.isLoggedIn });

@@ -11,7 +11,6 @@ class Schedule extends Component {
   state = {
     height: 25,
     timesWidth: "100px",
-    editMode: true,
     positions:[],
     locations: [],
     selected:[]
@@ -54,25 +53,6 @@ class Schedule extends Component {
     return comp;
   };
 
-  renderEditSlot = title => {
-    return (
-      <Grid item>
-        <Paper>{title}</Paper>
-        <EditSlot height={this.state.height} />
-      </Grid>
-    );
-  };
-
-  renderEditSlots = () => {
-    const comp = (
-      <Grid container direction="row">
-        {this.renderEditSlot("Monday")}
-
-      </Grid>
-    );
-    return comp;
-  };
-
   renderControl = () => {
     const comp = (
       <React.Fragment>
@@ -105,7 +85,7 @@ class Schedule extends Component {
         >
           {this.rednerTimes("From", "0845", "2145")}
           {this.rednerTimes("To", "0900", "2200")}
-          {this.state.editMode ? this.renderEditSlots(): this.renderSlots()}
+          {this.renderSlots()}
             
         </Grid>
       </Grid>
