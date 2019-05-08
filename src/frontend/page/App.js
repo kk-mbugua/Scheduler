@@ -4,11 +4,13 @@ import NavBar from "../components/navbar/NavBar";
 import LoginScene from "../scenes/loginScene";
 import TimeInputScene from "../scenes/timeInputScene";
 import PageNotFoundScene from "../scenes/pageNotFoundScene";
+import Test from "../components/tableTest";
+import Schedule from "../components/schedule/schedule";
 import AdminHomeScene from "../scenes/adminHomeScene";
 import EmployeesScene from "../scenes/employeesScene";
+import EmployeeHomeScene from "../scenes/employeeHomeScene";
 import AdminScheduleScene from "../scenes/adminScheduleScene";
 import PositionsScene from "../scenes/positionsScenes";
-
 
 class App extends Component {
   state = {
@@ -61,8 +63,10 @@ class App extends Component {
       <BrowserRouter>
         {this.rednerNavBar()}
         <Switch>
-          <Route path="/" component={TimeInputScene} exact />
-          <Route path="input" component={TimeInputScene} />
+          <Route path="/" component={EmployeeHomeScene} exact />
+          <Route path="/test" component={Test} exact />
+          <Route path="/display" component={Schedule} exact />
+          <Route path="/myhours" component={TimeInputScene} />
           <Route component={PageNotFoundScene} />
         </Switch>
       </BrowserRouter>
@@ -70,7 +74,8 @@ class App extends Component {
     return comp;
   };
   render() {
-    console.log("Are you logged in? ", localStorage.getItem("isLoggedIn"));
+    console.log("Are you logged in? ", localStorage.getItem("isLoggedIn"))
+    console.log("Your role is:", localStorage.getItem("role"))
     if (localStorage.getItem("isLoggedIn") === "false") {
       return <LoginScene setLogin={this.setLogin} />;
     }

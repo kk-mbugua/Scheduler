@@ -23,7 +23,6 @@ class NavBar extends Component {
   };
 
   onLogoutSuccess = response => {
-    console.log("here");
     this.props.setLogout();
     window.location.assign("/");
   };

@@ -19,8 +19,16 @@ class TimeInput extends Component {
     ));
   };
 
+  renderReasons = () => {
+    return this.props.data.reasons.map(reason => (
+      <MenuItem key={reason} value={reason}>
+        {reason}
+      </MenuItem>
+    ));
+  };
+
   render() {
-    const { day, timeFrom, timeTo } = this.props.data;
+    const { day, timeFrom, timeTo, reason } = this.props.data;
     const canDelete = this.props.canDelete;
     return (
       <FormGroup row={true} noValidate>
@@ -66,6 +74,20 @@ class TimeInput extends Component {
           margin="normal"
           onChange={event => this.props.onChange(event)}
         />
+        <TextField
+          id="reason"
+          name="reason"
+          label="Reason"
+          select
+          placeholder="Reason"
+          value={reason}
+          required={true}
+          variant="outlined"
+          margin="normal"
+          onChange={event => this.props.onChange(event)}
+        >
+          {this.renderReasons()}
+        </TextField>
 
         <IconButton
           size="medium"

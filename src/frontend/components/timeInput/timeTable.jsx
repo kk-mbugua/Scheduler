@@ -25,6 +25,7 @@ class TimeTable extends Component {
         <TableCell>{time.day}</TableCell>
         <TableCell>{time.from}</TableCell>
         <TableCell>{time.to}</TableCell>
+        <TableCell>{time.reason}</TableCell>
       </TableRow>
     ));
 
@@ -53,6 +54,7 @@ class TimeTable extends Component {
               <TableCell>Day</TableCell>
               <TableCell>From</TableCell>
               <TableCell>To</TableCell>
+              <TableCell>Reason</TableCell>
             </TableRow>
           </TableHead>
         </Table>

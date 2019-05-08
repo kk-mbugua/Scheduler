@@ -19,8 +19,8 @@ class PageNotFound extends Component {
     render() { 
         return ( 
                 <Paper elevation={4} style={this.styles.container}>
-                    <Typography>
-                        <h2>Page Not Found</h2>
+                    <Typography variant="h4">
+                        Page Not Found
                     </Typography>
                 </Paper>
          );

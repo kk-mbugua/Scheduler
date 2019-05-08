@@ -5,7 +5,7 @@ import Grid from "@material-ui/core/Grid";
 import styles from "./schedule.module.css";
 import Paper from "@material-ui/core/Paper";
 import Switch from "@material-ui/core/Switch";
-import EditSlot from "./editSlot";
+
 
 class Schedule extends Component {
   state = {

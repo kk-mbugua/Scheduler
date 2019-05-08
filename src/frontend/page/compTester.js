@@ -1,15 +1,12 @@
 import React, { Component } from "react";
 
-//import Schedule from "../components/schedule/schedule";
-//import EditSlot from '../components/schedule/editSlot'
-//import EditOptions from "../components/schedule/editOptions"
-import EditSchedule from "../components/schedule/editSchedule"
+import Schedule from "../components/schedule/schedule"
 
 class Tester extends Component {
   state = {};
 
   render() {
-    return <EditSchedule/>;
+    return <Schedule/>;
   }
 }
 

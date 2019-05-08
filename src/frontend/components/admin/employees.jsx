@@ -27,7 +27,6 @@ class Employees extends Component {
   }
 
   getEmployees = () => {
-    console.log("here");
     fetch("/api/employees")
       .then(res => res.json())
       .then(rawEmployees => {
